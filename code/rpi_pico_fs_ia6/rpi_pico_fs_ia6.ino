@@ -1,14 +1,16 @@
+//Settings :
+#define BUTTONS 0  //enables the last two channels to work as gamepad buttons (the levers on the top part of the controller). If disabled (put 0), the channels can be used for VRA and VRB sliders.
+#define NUM_CHANNELS 6
+
 #include <Joystick.h>
 
-#define NUM_CHANNELS 6
 uint32_t lastTimes;
+
 // Define the PWM pins for the FS-IA6 receiver
 int pwmPins[NUM_CHANNELS] = { 2, 3, 4, 5, 6, 7 };
 
 // Array to store PWM values
 volatile uint16_t pwmValues[NUM_CHANNELS];
-
-
 
 void pwmISR0() {
   handlePWM(0);
@@ -60,10 +62,13 @@ void setup() {
 }
 
 void loop() {
-  
+
   if (millis() - lastTimes >= 100) {
     lastTimes = millis();
+
     int16_t joystickValues[NUM_CHANNELS];
+    
+    //map the joystick values to 10-bit
     for (int i = 0; i < NUM_CHANNELS; i++) {
       joystickValues[i] = map(pwmValues[i], 995, 2000, 0, 1023);
       Serial.print("Channel ");
@@ -78,12 +83,25 @@ void loop() {
     Joystick.Y(joystickValues[1]);
     Joystick.Z(joystickValues[2]);
     Joystick.Zrotate(joystickValues[3]);
-    for (int i = 1; i <= 2; i++) {
-      if (pwmValues[3 + i] > 1100) {
-        Joystick.button(i, true);
-      } else {
-        Joystick.button(i, false);
+
+    //Buttons routine
+    if (BUTTONS) {
+
+      for (int i = 1; i <= 2; i++) {
+
+        if (pwmValues[3 + i] > 1100) {
+          Joystick.button(i, true);
+          Serial.println("on");
+        } else {
+          Joystick.button(i, false);
+          Serial.println("off");
+        }
+
       }
+
+    }else{
+      Joystick.sliderLeft(joystickValues[4]);
+      Joystick.sliderRight(joystickValues[5]);
     }
   }
 }
