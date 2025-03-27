@@ -1,5 +1,5 @@
 <h2>
-A simple option to connect a FLYSKY controller to any PC or Mac for flight simulators.
+A simple solution to connect a FLYSKY controller to any PC or Mac for flight simulators.
 </h2>
 <p>
 This project uses RPI Pico's native HID support, which avoids the use of virtual contollers and allows to use it with a Mac, something that I couldn't find on any forum before.
