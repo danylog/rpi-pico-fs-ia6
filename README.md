@@ -12,7 +12,8 @@ Apart from the controller and the receiver, you'll need jumper cables, a Rapberr
 <b>Instructions:</b>
 <ol>
   <li>Connect the Pico and the receiver like in the image (jumper cables work also):
-  <img width="820" alt="image" src="https://github.com/user-attachments/assets/14a9b0cd-6908-4765-8e00-24662e367523" />
+  <img width="1040" alt="image" src="https://github.com/user-attachments/assets/5bec7f72-031e-40dd-b069-52857f862979" />
+
     </li>
   <li>(if not done before) Bind the receiver and the controller. On how to do it, watch <a href="https://www.google.com/search?q=fs-ia6+binding&sca_esv=c1daa74f5b79c9cd&rlz=1C5CHFA_enES1060ES1060&udm=2&biw=1680&bih=962&sxsrf=AHTn8zpQ3h7FtCNBa6pQPiV8gF4jig6Kqw%3A1743081200241&ei=8E7lZ8S0Due6i-gPkuy7oQU&ved=0ahUKEwjE7IS-q6qMAxVn3QIHHRL2LlQQ4dUDCBE&uact=5&oq=fs-ia6+binding&gs_lp=EgNpbWciDmZzLWlhNiBiaW5kaW5nMgUQABiABDIGEAAYBRgeSPwTUMgBWNcScAJ4AJABAJgBUKABqAWqAQE5uAEDyAEA-AEBmAIKoAKMBcICBxAjGCcYyQLCAgYQABgHGB7CAgoQABiABBhDGIoFwgIEEAAYHsICBhAAGAgYHpgDAIgGAZIHAjEwoAfIErIHATi4B_oE&sclient=img#vhid=ZXcVvIt5zVw37M&vssid=mosaic">this video</a>.</li>
   <li>Hold the on-board button on the Pico and connect it to a USB port. It should appear as a removable drive. You can release the button.</li>
