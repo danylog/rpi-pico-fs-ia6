@@ -74,7 +74,9 @@ void loop() {
       Serial.print("Channel ");
       Serial.print(i + 1);
       Serial.print(": ");
-      Serial.println(pwmValues[i]);
+      Serial.print(pwmValues[i]);
+      Serial.print(" Joysktick value:");
+      Serial.print(joystickValues[i]);
     }
 
     // Update joystick values
