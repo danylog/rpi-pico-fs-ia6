@@ -1,7 +1,7 @@
 //Settings :
 #define BUTTONS 1  //enables the last two channels to work as gamepad buttons (the levers on the top part of the controller). If disabled (put 0), the channels can be used for VRA and VRB sliders.
 #define NUM_CHANNELS 6
-#define DIAGNOSTICS 1
+#define DIAGNOSTICS 1 //allows diagnostics through Serial Port
 
 #include <Joystick.h>
 
@@ -35,10 +35,7 @@ void pwmISR5() {
 }
 
 void handlePWM(int channel) {
-  static uint32_t lastTime[NUM_CHANNELS] = { 0 };
-  uint32_t currentTime = micros();
-  pwmValues[channel] = currentTime - lastTime[channel];
-  lastTime[channel] = currentTime;
+  pwmValues[channel] = pulseIn(pwmPins[channel], HIGH);
 }
 
 void setup() {
@@ -53,14 +50,6 @@ void setup() {
   pinMode(pwmPins[4], INPUT);
   pinMode(pwmPins[5], INPUT);
 
-  attachInterrupt(digitalPinToInterrupt(pwmPins[0]), pwmISR0, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(pwmPins[1]), pwmISR1, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(pwmPins[2]), pwmISR2, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(pwmPins[3]), pwmISR3, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(pwmPins[4]), pwmISR4, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(pwmPins[5]), pwmISR5, CHANGE);
-
-  // Initialize Joystick library
   Joystick.begin();
 }
 
@@ -73,9 +62,10 @@ void loop() {
 
     //map the joystick values to 10-bit
     for (int i = 0; i < NUM_CHANNELS; i++) {
-      joystickValues[i] = map(pwmValues[i], 995, 2000, 0, 1023);
-      if (DIAGNOSTICS) {
+      handlePWM(i);
+      joystickValues[i] = map(pwmValues[i], 1000, 2000, 0, 1023);
 
+      if (DIAGNOSTICS && i!=4 && i!=5) {
         diagnostics(i);
       }
     }
