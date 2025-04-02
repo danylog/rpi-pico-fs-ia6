@@ -25,3 +25,4 @@ Apart from the controller and the receiver, you'll need jumper cables, a Rapberr
 <p>
   If you wish to collaborate or just rebuild the Pico firmware for your own needs, you can use the .ino files and Arduino IDE. <a href="https://randomnerdtutorials.com/programming-raspberry-pi-pico-w-arduino-ide/">Instructions on how to use Arduino IDE for RPI Pico</a>
 </p>
+<a href="https://www.buymeacoffee.com/danylog" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
